@@ -4,7 +4,7 @@
   "clients": [
     LARAVEL_ECHO_CLIENTS
   ],
-  "database": "LARAVEL_ECHO_DB",
+  "database": "LARAVEL_ECHO_DB_TYPE",
   "databaseConfig": {
     "redis": {
       "host": "LARAVEL_ECHO_DB_CONFIG_REDIS_HOST",
