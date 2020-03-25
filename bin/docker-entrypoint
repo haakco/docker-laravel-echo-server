@@ -21,6 +21,7 @@ if [[ "$1" == 'start' ]] || [[ "$1" == 'client:add' ]] || [[ "$1" == 'client:rem
         sed -i \
             -e "s|LARAVEL_ECHO_AUTH_HOST|${LARAVEL_ECHO_AUTH_HOST:-'http://localhost'}|i" \
             -e "s|LARAVEL_ECHO_AUTH_ENDPOINT|${LARAVEL_ECHO_AUTH_ENDPOINT:-'/broadcasting/auth'}|i" \
+            -e "s|LARAVEL_ECHO_CLIENTS|${LARAVEL_ECHO_CLIENTS:-''}|i" \
             -e "s|LARAVEL_ECHO_DB|${LARAVEL_ECHO_DB:-redis}|i" \
             -e "s|LARAVEL_ECHO_DB_CONFIG_REDIS_HOST|${LARAVEL_ECHO_DB_CONFIG_REDIS_HOST:-redis}|i" \
             -e "s|LARAVEL_ECHO_DB_CONFIG_REDIS_PORT|${LARAVEL_ECHO_DB_CONFIG_REDIS_PORT:-6379}|i" \

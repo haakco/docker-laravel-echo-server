@@ -1,7 +1,9 @@
 {
   "authHost": "LARAVEL_ECHO_AUTH_HOST",
   "authEndpoint": "LARAVEL_ECHO_AUTH_ENDPOINT",
-  "clients": [],
+  "clients": [
+    LARAVEL_ECHO_CLIENTS
+  ],
   "database": "LARAVEL_ECHO_DB",
   "databaseConfig": {
     "redis": {
