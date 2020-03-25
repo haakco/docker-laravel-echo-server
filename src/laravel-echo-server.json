@@ -1,31 +1,32 @@
 {
-  "authHost": "http://localhost",
-  "authEndpoint": "/broadcasting/auth",
+  "authHost": "LARAVEL_ECHO_AUTH_HOST",
+  "authEndpoint": "LARAVEL_ECHO_AUTH_ENDPOINT",
   "clients": [],
-  "database": "LARAVEL_ECHO_SERVER_DB",
+  "database": "LARAVEL_ECHO_DB",
   "databaseConfig": {
     "redis": {
-      "host": "REDIS_HOST",
-      "port": "REDIS_PORT",
-      "keyPrefix": "REDIS_KEY_PREFIX",
+      "host": "LARAVEL_ECHO_DB_CONFIG_REDIS_HOST",
+      "port": "LARAVEL_ECHO_DB_CONFIG_REDIS_PORT",
+      "keyPrefix": "LARAVEL_ECHO_DB_CONFIG_REDIS_KEY_PREFIX",
       "options": {
-        "db": "REDIS_DB_BACKEND"
+        "db": "LARAVEL_ECHO_DB_CONFIG_REDIS_OPTIONS_DB_BACKEND"
       }
     },
     "sqlite": {
-      "databasePath": "/app/database/laravel-echo-server.sqlite"
+      "databasePath": "LARAVEL_ECHO_DB_CONFIG_SQLITE_DB_PATH"
     },
-    "publishPresence": true
+    "publishPresence": LARAVEL_ECHO_DB_CONFIG_PUBLISH_PRESENCE
   },
-  "devMode": false,
-  "host": null,
-  "port": 6001,
-  "protocol": "http",
-  "subscribers": {"http": true, "redis": true},
+  "devMode": LARAVEL_ECHO_DEV_MODE,
+  "host": LARAVEL_ECHO_HOST,
+  "port": LARAVEL_ECHO_PORT,
+  "protocol": "LARAVEL_ECHO_PROTO",
+  "socketio": {},
+  "subscribers": {"http": LARAVEL_ECHO_SUBSCRIBERS_HTTP, "redis": LARAVEL_ECHO_SUBSCRIBERS_REDIS},
   "apiOriginAllow": {
-    "allowCors": true,
-    "allowOrigin": "http://localhost",
-    "allowMethods": "GET, OPTION, POST",
-    "allowHeaders": "Accept, Authorization, Content-Type, Origin, X-Auth-Token, X-CSRF-TOKEN, X-Requested-With, X-Socket-Id"
+    "allowCors": LARAVEL_ECHO_API_ORIGIN_ALLOW_CORS,
+    "allowOrigin": "LARAVEL_ECHO_API_ORIGIN_ALLOW_ORIGIN",
+    "allowMethods": "LARAVEL_ECHO_API_ORIGIN_ALLOW_METHODS",
+    "allowHeaders": "LARAVEL_ECHO_API_ORIGIN_ALLOW_HEADERS"
   }
 }

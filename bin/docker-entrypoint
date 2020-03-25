@@ -18,11 +18,27 @@ if [[ "$1" == 'start' ]] || [[ "$1" == 'client:add' ]] || [[ "$1" == 'client:rem
     elif [[ ! -f /app/laravel-echo-server.json ]]; then
         cp /usr/local/src/laravel-echo-server.json /app/laravel-echo-server.json
         # Replace with environment variables
-        sed -i "s|LARAVEL_ECHO_SERVER_DB|${LARAVEL_ECHO_SERVER_DB:-redis}|i" /app/laravel-echo-server.json
-        sed -i "s|REDIS_HOST|${REDIS_HOST:-redis}|i" /app/laravel-echo-server.json
-        sed -i "s|REDIS_PORT|${REDIS_PORT:-6379}|i" /app/laravel-echo-server.json
-        sed -i "s|REDIS_KEY_PREFIX|${REDIS_KEY_PREFIX:-laravel_database_}|i" /app/laravel-echo-server.json
-        sed -i "s|REDIS_DB_BACKEND|${REDIS_DB_BACKEND:-0}|i" /app/laravel-echo-server.json
+        sed -i \
+            -e "s|LARAVEL_ECHO_AUTH_HOST|${LARAVEL_ECHO_AUTH_HOST:-'http://localhost'}|i" \
+            -e "s|LARAVEL_ECHO_AUTH_ENDPOINT|${LARAVEL_ECHO_AUTH_ENDPOINT:-'/broadcasting/auth'}|i" \
+            -e "s|LARAVEL_ECHO_DB|${LARAVEL_ECHO_DB:-redis}|i" \
+            -e "s|LARAVEL_ECHO_DB_CONFIG_REDIS_HOST|${LARAVEL_ECHO_DB_CONFIG_REDIS_HOST:-redis}|i" \
+            -e "s|LARAVEL_ECHO_DB_CONFIG_REDIS_PORT|${LARAVEL_ECHO_DB_CONFIG_REDIS_PORT:-6379}|i" \
+            -e "s|LARAVEL_ECHO_DB_CONFIG_REDIS_KEY_PREFIX|${LARAVEL_ECHO_DB_CONFIG_REDIS_KEY_PREFIX:-laravel_database_}|i" \
+            -e "s|LARAVEL_ECHO_DB_CONFIG_REDIS_OPTIONS_DB_BACKEND|${LARAVEL_ECHO_DB_CONFIG_REDIS_OPTIONS_DB_BACKEND:-0}|i" \
+            -e "s|LARAVEL_ECHO_DB_CONFIG_SQLITE_DB_PATH|${LARAVEL_ECHO_DB_CONFIG_SQLITE_DB_PATH:-'/app/database/laravel-echo-server.sqlite'}|i" \
+            -e "s|LARAVEL_ECHO_DB_CONFIG_PUBLISH_PRESENCE|${LARAVEL_ECHO_DB_CONFIG_PUBLISH_PRESENCE:-'true'}|i" \
+            -e "s|LARAVEL_ECHO_DEV_MODE|${LARAVEL_ECHO_DEV_MODE:-'false'}|i" \
+            -e "s|LARAVEL_ECHO_HOST|${LARAVEL_ECHO_HOST:-'null'}|i" \
+            -e "s|LARAVEL_ECHO_PORT|${LARAVEL_ECHO_PORT:-'6001'}|i" \
+            -e "s|LARAVEL_ECHO_PROTO|${LARAVEL_ECHO_PROTO:-'http'}|i" \
+            -e "s|LARAVEL_ECHO_SUBSCRIBERS_HTTP|${LARAVEL_ECHO_SUBSCRIBERS_HTTP:-'true'}|i" \
+            -e "s|LARAVEL_ECHO_SUBSCRIBERS_REDIS|${LARAVEL_ECHO_SUBSCRIBERS_REDIS:-'true'}|i" \
+            -e "s|LARAVEL_ECHO_API_ORIGIN_ALLOW_CORS|${LARAVEL_ECHO_API_ORIGIN_ALLOW_CORS:-'true'}|i" \
+            -e "s|LARAVEL_ECHO_API_ORIGIN_ALLOW_ORIGIN|${LARAVEL_ECHO_API_ORIGIN_ALLOW_ORIGIN:-'http://localhost'}|i" \
+            -e "s|LARAVEL_ECHO_API_ORIGIN_ALLOW_METHODS|${LARAVEL_ECHO_API_ORIGIN_ALLOW_METHODS:-'GET, OPTION, POST'}|i" \
+            -e "s|LARAVEL_ECHO_API_ORIGIN_ALLOW_HEADERS|${LARAVEL_ECHO_API_ORIGIN_ALLOW_HEADERS:-'Accept, Authorization, Content-Type, Origin, X-Auth-Token, X-CSRF-TOKEN, X-Requested-With, X-Socket-Id'}|i" \
+            /app/laravel-echo-server.json
     fi
     set -- laravel-echo-server "$@"
 fi
